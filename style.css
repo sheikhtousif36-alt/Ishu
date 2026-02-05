@@ -1,0 +1,108 @@
+:root {
+    --love-pink: #ff4d6d;
+    --soft-pink: #ffccd5;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 2.5rem;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    z-index: 10;
+}
+
+#status-bar {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--love-pink);
+    margin-bottom: 15px;
+}
+
+.vibe-video {
+    width: 100%;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #c9184a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn {
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.yes-btn {
+    background: var(--love-pink);
+    color: white;
+    width: 100%;
+    font-size: 1.3rem;
+    box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+}
+
+.no-btn {
+    background: var(--white);
+    color: var(--love-pink);
+    font-size: 0.9rem;
+    border: 1px solid var(--soft-pink);
+}
+
+/* Irritating Heart Rain */
+.heart {
+    position: absolute;
+    top: -20px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to { transform: translateY(105vh) rotate(360deg); }
+}
+
+.hidden { display: none; }
+
+.shake {
+    animation: shakeAnim 0.3s ease-in-out;
+}
+
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
