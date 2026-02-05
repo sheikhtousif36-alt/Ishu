@@ -28,7 +28,60 @@
             
         </div>
     </div>
+<script>
+  const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const glassCard = document.querySelector('.glass-card');
+const mainContent = document.getElementById('main-content');
+const successScreen = document.getElementById('success-screen');
+const rainContainer = document.getElementById('heart-rain-container');
 
+let rejectionCount = 0;
+
+// Function to drop hearts
+function dropHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = ['❤️', '💖', '💘', '🌸'][Math.floor(Math.random() * 4)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    rainContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+}
+
+// Start with light rain
+setInterval(dropHeart, 500);
+
+noBtn.addEventListener('click', () => {
+    rejectionCount++;
+    
+    // 1. Shake the card
+    glassCard.classList.add('shake');
+    setTimeout(() => glassCard.classList.remove('shake'), 300);
+
+    // 2. Make Yes Button bigger (Aggressively)
+    let newScale = 1 + (rejectionCount * 0.4);
+    yesBtn.style.transform = `scale(${newScale})`;
+    
+    // 3. Make No Button smaller and move it
+    let noScale = 1 - (rejectionCount * 0.1);
+    noBtn.style.transform = `scale(${Math.max(noScale, 0.3)}) translate(${Math.random()*50}px, ${Math.random()*50}px)`;
+
+    // 4. THE IRRITATING PART: Increase Heart Rain density
+    for(let i=0; i<5; i++) { dropHeart(); }
+
+    // 5. Change Text
+    const texts = ["Really?", "Are you sure?", "You're joking, right?", "Click the big one!", "JUST SAY YES"];
+    document.getElementById('question').innerText = texts[Math.min(rejectionCount, texts.length-1)];
+});
+
+yesBtn.addEventListener('click', () => {
+    mainContent.classList.add('hidden');
+    successScreen.classList.remove('hidden');
+    // Final heart explosion
+    for(let i=0; i<50; i++) { setTimeout(dropHeart, i*50); }
+});
+</script>
     <script src="script.js"></script>
 </body>
 </html>
